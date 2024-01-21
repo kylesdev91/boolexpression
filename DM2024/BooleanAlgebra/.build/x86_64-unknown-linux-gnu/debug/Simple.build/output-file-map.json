@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/home/kyle-hernandez/Digital Portfolio/DM2024/BooleanAlgebra/.build/x86_64-unknown-linux-gnu/debug/Simple.build/master.swiftdeps"
+  },
+  "/home/kyle-hernandez/Digital Portfolio/DM2024/BooleanAlgebra/main.swift": {
+    "dependencies": "/home/kyle-hernandez/Digital Portfolio/DM2024/BooleanAlgebra/.build/x86_64-unknown-linux-gnu/debug/Simple.build/main.d",
+    "object": "/home/kyle-hernandez/Digital Portfolio/DM2024/BooleanAlgebra/.build/x86_64-unknown-linux-gnu/debug/Simple.build/main.swift.o",
+    "swiftmodule": "/home/kyle-hernandez/Digital Portfolio/DM2024/BooleanAlgebra/.build/x86_64-unknown-linux-gnu/debug/Simple.build/main~partial.swiftmodule",
+    "swift-dependencies": "/home/kyle-hernandez/Digital Portfolio/DM2024/BooleanAlgebra/.build/x86_64-unknown-linux-gnu/debug/Simple.build/main.swiftdeps"
+  }
+}

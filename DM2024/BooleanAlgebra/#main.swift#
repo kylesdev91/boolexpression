@@ -1,0 +1,90 @@
+clear
+clear
+fg
+
+quit
+
+
+
+
+pwd
+pwd
+
+
+
+import Foundation
+
+// Defining TokenTypes using an enum for a parser and evaluator to store the TokenTypes
+// Using variable to have different operator "AND", "OR", "XOR", "EQUAL", "NOT", and "IMPLY"
+// Including openParenthesis and closedParenthesis in different statements like in, (A ∧ B)
+enum TokenType {
+    case variable(String)              
+    case `operator`(String)  
+    case openParenthesis
+    case closeParenthesis
+
+
+}
+// The tokenize function is responsible for breaking down a given boolean expression string into a sequence of tokens, where each token represents a distinct component of the expression.
+// The function processes the input string character by character, identifying variables, operators, and parentheses, and converts them into instances of the TokenType enum.
+func tokenize(expression: String) -> [TokenType] {
+   var tokens: [TokenType] = []
+   var currentToken = ""
+
+   // Going to be using a switch statement. if the tokens or different characters we append or add the operator.
+   // If the currenToken is empty their shouldn't be really input or output, therefore the code should fail.
+   // The ternary conditional operator is a concise way to express a conditional (if-else) statement in a single line
+   // No matter what statement they will be returning the tokens
+   
+   for character in expression {
+       switch character {
+       case " ", "&", "∧", "|", "∨", "^", "⊕", "=", "≠", "-", "¬", ">", "→", "(", ")":
+           currentToken = ""
+           if !currentToken.isEmpty {
+               tokens.append(currentToken.allSatisfy {$0.isLetter}  ? .variable(currentToken) : .operator(currentToken.uppercased()))
+               currentToken = ""
+               
+           }
+           switch character {
+           case "&", "∧": tokens.append(.operator("AND"))
+           case "|", "∨": tokens.append(.operator("OR"))
+           case "^", "⊕": tokens.append(.operator("XOR"))
+           case "=", "≠": tokens.append(.operator("EQUAL"))
+           case "-", "¬": tokens.append(.operator("NOT"))
+           case ">", "→": tokens.append(.operator("IMPLY"))
+           case "(": tokens.append(.openParenthesis)
+           case ")": tokens.append(.closeParenthesis)
+           default: break
+           }
+           default:
+               currentToken.append(character)
+       }
+   }
+
+   if !currentToken.isEmpty {
+       tokens.append(currentToken.allSatisfy {$0.isLetter } ? .variable(currentToken) : .operator(currentToken.uppercased()))
+   }
+   return tokens
+}
+
+// Main program
+func main() {
+    print("Enter a boolean expression:")
+    // Read standard input 
+    if let expression = readLine() {
+        let tokens = tokenize(expression: expression)
+        let variables = Set(tokens.compactMap { token -> String? in
+                                if case let .variable(name) = token { return name }
+                                return nil
+                            })
+        // Additional logic for parse tree construction and truth table generation
+        // Display tokens and variables for demonstration using "String Interporlation"
+        // AllSatify is to see if all methods and variables are set to true otherwise return false
+        // isLetter is a property of Character returning true or false too.
+     
+        print("Tokens: \(tokens)")
+        print("Variables: \(variables.sorted())")
+  }
+}
+// Run the program main()
+main()
